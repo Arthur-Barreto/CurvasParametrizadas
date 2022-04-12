@@ -10,7 +10,7 @@ def rootsearch(f,a,b,dx):
         x2 = x1 + dx; f2 = f(x2)
     return x1,x2
 
-def bisect(f,x1,x2,switch=0,epsilon=1.0e-9):
+def bisect(f,x1,x2,switch=0,epsilon=1.0e-6):
     f1 = f(x1)
     if f1 == 0.0:
         return x1
@@ -56,5 +56,8 @@ X_zero = lambda x: 8*math.cos(x) - 3*math.cos((11*x)/2)
 X_linhax = lambda x: 8*math.cos(x) - 3*(11/2)*math.cos((11*x/2))
 Y_linhaz = lambda x: -8*math.sin(x) + 3*(11/2)*math.sin((11*x/2))
 
-roots(Y_zero, 0, 4*math.pi)
-roots(X_zero, 0, 4*math.pi)
+Eq4 = lambda x: 8*math.sin(x/2) + 3*math.sin((11*x)/4)
+Eq7 =  lambda x: 8*math.sin(x/2) - 3*math.sin((11*x)/4)
+
+roots(Eq4, 0, 4*math.pi)
+roots(Eq7, 0, 4*math.pi)
