@@ -10,7 +10,7 @@ def rootsearch(f,a,b,dx):
         x2 = x1 + dx; f2 = f(x2)
     return x1,x2
 
-def bisect(f,x1,x2,switch=0,epsilon=1.0e-6):
+def bisect(f,x1,x2,switch=0,epsilon=1.0e-7):
     f1 = f(x1)
     if f1 == 0.0:
         return x1
@@ -35,7 +35,7 @@ def bisect(f,x1,x2,switch=0,epsilon=1.0e-6):
             f2 = f3
     return (x1 + x2)/2.0
 
-def roots(f, a, b, eps=1e-6):
+def roots(f, a, b, eps=1e-7):
     print ('The roots on the interval [%f, %f] are:' % (a,b))
     while 1:
         x1,x2 = rootsearch(f,a,b,eps)
@@ -50,14 +50,24 @@ def roots(f, a, b, eps=1e-6):
             print ('\nDone')
             break
 
-Y_zero = lambda x: 8*math.sin(x) - 3*math.sin((11*x)/2)
-X_zero = lambda x: 8*math.cos(x) - 3*math.cos((11*x)/2)
 
-X_linhax = lambda x: 8*math.cos(x) - 3*(11/2)*math.cos((11*x/2))
-Y_linhaz = lambda x: -8*math.sin(x) + 3*(11/2)*math.sin((11*x/2))
+if __name__ == "__main__":
+    Y_zero = lambda x: 8*math.sin(x) - 3*math.sin((11*x)/2)
+    X_zero = lambda x: 8*math.cos(x) - 3*math.cos((11*x)/2)
 
-Eq4 = lambda x: 8*math.sin(x/2) + 3*math.sin((11*x)/4)
-Eq7 =  lambda x: 8*math.sin(x/2) - 3*math.sin((11*x)/4)
+    X_linhax = lambda x: 8*math.cos(x) - 3*(11/2)*math.cos((11*x/2))
+    Y_linhaz = lambda x: -8*math.sin(x) + 3*(11/2)*math.sin((11*x/2))
 
-roots(Eq4, 0, 4*math.pi)
-roots(Y_linhaz, 0, 4*math.pi)
+    eq6 = lambda x: 8*math.sin(x/2) + 3*math.sin((11*x)/4)
+    eq7 =  lambda x: 8*math.sin(x/2) - 3*math.sin((11*x)/4)
+    eq8 = lambda x: 21.97981936*math.sin(x/2) + 3*math.sin((11*x)/4)
+    eq9 = lambda x: 8*(math.sqrt(3)/3)*math.sin(x/2) - 3*math.sin((11*x)/4)
+    eq10 = lambda x: 1.410615846*math.sin(x/2) - 3*math.sin((11*x)/4)
+    eq11 = lambda x: 2.16118886*math.sin(x/2) + 3*math.sin((11*x)/4)
+
+    roots(eq6, 0, 4*math.pi)
+    roots(eq7, 0, 4*math.pi)
+    roots(eq8, 0, 4*math.pi)
+    roots(eq9, 0, 4*math.pi)
+    roots(eq10, 0, 4*math.pi)
+    roots(eq11, 0, 4*math.pi)
