@@ -60,4 +60,4 @@ Eq4 = lambda x: 8*math.sin(x/2) + 3*math.sin((11*x)/4)
 Eq7 =  lambda x: 8*math.sin(x/2) - 3*math.sin((11*x)/4)
 
 roots(Eq4, 0, 4*math.pi)
-roots(Eq7, 0, 4*math.pi)
+roots(Y_linhaz, 0, 4*math.pi)
