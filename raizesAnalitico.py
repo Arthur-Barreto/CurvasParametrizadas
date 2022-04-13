@@ -1,4 +1,5 @@
 import math
+from concurrent.futures import ThreadPoolExecutor
 
 def rootsearch(f,a,b,dx):
     x1 = a; f1 = f(a)
@@ -52,22 +53,24 @@ def roots(f, a, b, eps=1e-7):
 
 
 if __name__ == "__main__":
-    Y_zero = lambda x: 8*math.sin(x) - 3*math.sin((11*x)/2)
-    X_zero = lambda x: 8*math.cos(x) - 3*math.cos((11*x)/2)
 
-    X_linhax = lambda x: 8*math.cos(x) - 3*(11/2)*math.cos((11*x/2))
-    Y_linhaz = lambda x: -8*math.sin(x) + 3*(11/2)*math.sin((11*x/2))
+    with ThreadPoolExecutor(2) as executor:
+        Y_zero = lambda x: 8*math.sin(x) - 3*math.sin((11*x)/2)
+        X_zero = lambda x: 8*math.cos(x) - 3*math.cos((11*x)/2)
 
-    eq6 = lambda x: 8*math.sin(x/2) + 3*math.sin((11*x)/4)
-    eq7 =  lambda x: 8*math.sin(x/2) - 3*math.sin((11*x)/4)
-    eq8 = lambda x: 21.97981936*math.sin(x/2) + 3*math.sin((11*x)/4)
-    eq9 = lambda x: 8*(math.sqrt(3)/3)*math.sin(x/2) - 3*math.sin((11*x)/4)
-    eq10 = lambda x: 1.410615846*math.sin(x/2) - 3*math.sin((11*x)/4)
-    eq11 = lambda x: 2.16118886*math.sin(x/2) + 3*math.sin((11*x)/4)
+        X_linhax = lambda x: 8*math.cos(x) - 3*(11/2)*math.cos((11*x/2))
+        Y_linhaz = lambda x: -8*math.sin(x) + 3*(11/2)*math.sin((11*x/2))
 
-    roots(eq6, 0, 4*math.pi)
-    roots(eq7, 0, 4*math.pi)
-    roots(eq8, 0, 4*math.pi)
-    roots(eq9, 0, 4*math.pi)
-    roots(eq10, 0, 4*math.pi)
-    roots(eq11, 0, 4*math.pi)
+        eq6 = lambda x: 8*math.sin(x/2) + 3*math.sin((11*x)/4)
+        eq7 =  lambda x: 8*math.sin(x/2) - 3*math.sin((11*x)/4)
+        eq8 = lambda x: 21.97981936*math.sin(x/2) + 3*math.sin((11*x)/4)
+        eq9 = lambda x: 8*(math.sqrt(3)/3)*math.sin(x/2) - 3*math.sin((11*x)/4)
+        eq10 = lambda x: 1.410615846*math.sin(x/2) - 3*math.sin((11*x)/4)
+        eq11 = lambda x: 2.16118886*math.sin(x/2) + 3*math.sin((11*x)/4)
+
+        executor.map(roots(eq6, 0, 4*math.pi))
+        executor.map(roots(eq7, 0, 4*math.pi))
+        executor.map(roots(eq8, 0, 4*math.pi))
+        executor.map(roots(eq9, 0, 4*math.pi))
+        executor.map(roots(eq10, 0, 4*math.pi))
+        executor.map(roots(eq11, 0, 4*math.pi))
