@@ -55,13 +55,5 @@ def roots(f, a, b, eps=1e-7):
 if __name__ == "__main__":
 
     with ThreadPoolExecutor(2) as executor:
-        Y_zero = lambda x: 8*sin(x) - 3*sin((11*x)/2)
-        X_zero = lambda x: 8*cos(x) - 3*cos((11*x)/2)
-
-        X_linhax = lambda x: 8*cos(x) - 3*(11/2)*cos((11*x/2))
-        Y_linhaz = lambda x: -8*sin(x) + 3*(11/2)*sin((11*x/2))
-
-        eq6 = lambda x: 8*sin(x/2) + 3*sin((11*x)/4)
-        eq7 = lambda x: 8*sin(x/2) - 3*sin((11*x)/4)
-        # executor.map(roots(eq6, 0, 4*pi))
-        executor.map(roots(eq7, 0, 4*pi))
+        eq = lambda B: 6*sin(B) - 7*sin((3*B))
+        executor.map(roots(eq, 0, 2*pi))
