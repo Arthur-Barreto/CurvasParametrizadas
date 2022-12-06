@@ -1,16 +1,15 @@
 from math import sin, cos, pi
 
-def eqs(u,id):
-    if id == 8:
-        return (cos(pi/9)/cos(11*pi/18))*8*sin(u/2)-3*sin(11/4*u)
+def eqs(u):
+    return 6*sin(u/2) - 7*sin((3*u/2))
 
 def bissec(a,b):
     # E faz o papel de x, não é preciso passar ele como parametro para esssa função
     # seja p o ponto médio de a e b
     p = (a+b)/2
     
-    aux1 = eqs(a,8)
-    aux2 = eqs(p,8)
+    aux1 = eqs(a)
+    aux2 = eqs(p)
     
     if aux1*aux2 < 0:
         # temos a raiz nesse intervalo
@@ -46,9 +45,9 @@ def solvBissec(a,b,er,retorno):
             check = False
         else:
             a, b = bissec(a,b)
-            g = (a+b)/2
+            g = round((a+b)/2, 5)
     if retorno:
         return g, erro
     return g
 
-print(solvBissec(6,6.1,10**-7,True))
+print(solvBissec(0,6.28,10**-7,True))

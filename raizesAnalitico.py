@@ -55,5 +55,5 @@ def roots(f, a, b, eps=1e-7):
 if __name__ == "__main__":
 
     with ThreadPoolExecutor(2) as executor:
-        eq = lambda B: 6*sin(B) - 7*sin((3*B))
+        eq = lambda B: 6*sin(B/2) - 7*sin((3*B/2))
         executor.map(roots(eq, 0, 2*pi))
